@@ -23,7 +23,7 @@ contract GodlVault is ERC4626 {
             _amount <= IERC20(asset()).balanceOf(address(this)),
             "not enough tokens in vault"
         );
-        IERC20(asset()).transfer(address(0), _amount);
+        IERC20(asset()).transfer(address(0xdead), _amount);
     }
 
     /**
@@ -32,7 +32,7 @@ contract GodlVault is ERC4626 {
     function simulateStrategyProfit(uint _amount) public {
         (bool success, ) = asset().call(
             abi.encodeWithSignature(
-                "sillyMint(address,uint256)",
+                "ezMint(address,uint256)",
                 address(this),
                 _amount
             )
