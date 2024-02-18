@@ -1,9 +1,13 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "../contracts/YourContract.sol";
+import {GodlVault} from "../contracts/GodlVault.sol";
+import {GodlToken} from "../contracts/GodlToken.sol";
 import "./DeployHelpers.s.sol";
 
+/**
+ *
+ */
 contract DeployScript is ScaffoldETHDeploy {
     error InvalidPrivateKey(string);
 
@@ -15,15 +19,25 @@ contract DeployScript is ScaffoldETHDeploy {
             );
         }
         vm.startBroadcast(deployerPrivateKey);
-        YourContract yourContract = new YourContract(
-            vm.addr(deployerPrivateKey)
-        );
+
+        // First, deploy the ERC-20 token contract
+        GodlToken godlToken = new GodlToken();
         console.logString(
             string.concat(
-                "YourContract deployed at: ",
-                vm.toString(address(yourContract))
+                "GodlToken contract deployed at: ",
+                vm.toString(address(godlToken))
             )
         );
+
+        // Second, deploy the Vault contract using the address of the ERC-20 token contract as constructor argument
+        GodlVault godlVault = new GodlVault(godlToken);
+        console.logString(
+            string.concat(
+                "GodlVault contract deployed at: ",
+                vm.toString(address(godlVault))
+            )
+        );
+
         vm.stopBroadcast();
 
         /**
