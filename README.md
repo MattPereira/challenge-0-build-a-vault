@@ -1,4 +1,4 @@
-# 🚩 Challenge 0: 🛡️ Build a Vault
+# 🚩 Challenge 0: 🛠️ Build a Vault
 
 This challenge will help you understand the fundamentals of the ERC-4626 Tokenized Vault Standard.
 
