@@ -8,7 +8,7 @@ const Home: NextPage = () => {
         <div className="flex flex-col items-center max-w-[800px]">
           <div className="mb-3 flex flex-col items-center">
             <h3 className="text-2xl">Scaffold-ETH DeFi Challenges</h3>
-            <h1 className="text-5xl font-bold">Challenge #0: 🛡️Build a Vault</h1>
+            <h1 className="text-5xl font-bold">Challenge #0: 🛠️ Build a Vault</h1>
           </div>
 
           <div>
