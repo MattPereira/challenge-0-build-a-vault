@@ -16,7 +16,7 @@ contract GodlVault is ERC4626 {
     ) ERC4626(_asset) ERC20("Godl Vault Token", "vGODL") {}
 
     /**
-     *
+     * Pretend that a vault strategy resulted in loss
      */
     function simulateStrategyLoss(uint _amount) public {
         require(
@@ -27,7 +27,7 @@ contract GodlVault is ERC4626 {
     }
 
     /**
-     *
+     *  Pretend that a vault strategy resulted in profit
      */
     function simulateStrategyProfit(uint _amount) public {
         (bool success, ) = asset().call(

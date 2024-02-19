@@ -164,12 +164,12 @@ const DepositModal = ({ account, userGodlBalance }: { account: any; userGodlBala
 };
 
 const WithdrawModal = ({ account, userVaultShares }: { account: any; userVaultShares: any }) => {
-  const [withdrawAmount, setWithdrawAmount] = useState("0");
+  const [burnSharesAmount, setBurnSharesAmount] = useState("0");
 
-  const { writeAsync: withdraw } = useScaffoldContractWrite({
+  const { writeAsync: redeem } = useScaffoldContractWrite({
     contractName: "GodlVault",
-    functionName: "withdraw",
-    args: [parseUnits(withdrawAmount, 18), account?.address, account?.address],
+    functionName: "redeem",
+    args: [parseUnits(burnSharesAmount, 18), account?.address, account?.address],
   });
 
   return (
@@ -195,15 +195,15 @@ const WithdrawModal = ({ account, userVaultShares }: { account: any; userVaultSh
             <div className="text-xs">Available: {formatUnits(userVaultShares || 0n, 18)}</div>
           </div>
           <input
-            onChange={e => setWithdrawAmount(e.target.value)}
-            value={withdrawAmount}
+            onChange={e => setBurnSharesAmount(e.target.value)}
+            value={burnSharesAmount}
             className="w-40 bg-base-300 text-center font-bold text-2xl"
           />
         </div>
         <form method="dialog">
           <button
             onClick={async () => {
-              await withdraw();
+              await redeem();
             }}
             className="btn btn-lg btn-accent text-xl w-full mt-5 mb-2"
           >

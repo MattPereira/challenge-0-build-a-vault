@@ -30,6 +30,7 @@ export const Strategist = () => {
       <h2 className="text-4xl text-center font-bold mb-5">STRATEGIST</h2>
       <div className=" bg-base-100 rounded-lg p-5 flex flex-col gap-5">
         <button
+          disabled={totalAssets === 0n}
           className="btn btn-lg btn-primary rounded-lg w-full text-xl"
           onClick={() => {
             const modal = document.getElementById("lend_modal");
@@ -41,6 +42,7 @@ export const Strategist = () => {
           🔄 Lend & Borrow
         </button>
         <button
+          disabled={totalAssets === 0n}
           className="btn btn-lg btn-primary rounded-lg w-full text-xl"
           onClick={() => {
             const modal = document.getElementById("arbitrage_modal");
@@ -52,6 +54,7 @@ export const Strategist = () => {
           ⚖️ Arbitrage
         </button>
         <button
+          disabled={totalAssets === 0n}
           className="btn btn-lg btn-primary rounded-lg w-full text-xl"
           onClick={() => {
             const modal = document.getElementById("liquidity_modal");
@@ -115,7 +118,7 @@ const StrategyModal = ({
   simulateStrategyProfit: any;
   simulateStrategyLoss: any;
 }) => {
-  const percent = id === "lend_modal" ? "10%" : title === "arbitrage_modal" ? "25%" : "50%";
+  const percent = id === "lend_modal" ? "10%" : id === "arbitrage_modal" ? "25%" : "50%";
   return (
     <dialog id={id} className="modal">
       <div className="modal-box bg-base-200 border-base-300 border-2 p-8">
